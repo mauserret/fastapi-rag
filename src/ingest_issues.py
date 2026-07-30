@@ -36,7 +36,7 @@ def get_headers() -> dict:
         headers["Authorization"] = f"Bearer {token}"
     else:
         print(
-            "WARNING: no GITHUB_TOKEN found in .env — you're limited to 60 "
+            "WARNING: no GITHUB_TOKEN found in .env, you're limited to 60 "
             "requests/hour. Set one up for a real pull (see .env.example)."
         )
     return headers
@@ -68,7 +68,7 @@ def fetch_issue_list(headers: dict, max_issues: int) -> list[dict]:
                 API_URL,
                 headers=headers,
                 params={
-                    "state": "all",       # open AND closed — closed issues often
+                    "state": "all",       # open AND closed, closed issues often
                                             # have the actual resolution
                     "per_page": per_page,
                     "page": page,
@@ -82,7 +82,7 @@ def fetch_issue_list(headers: dict, max_issues: int) -> list[dict]:
             if not batch:
                 break  # no more pages
 
-            # Pull requests show up in this endpoint too; skip them.
+            # Pull requests show up in this endpoint too, skip them.
             real_issues = [i for i in batch if "pull_request" not in i]
             issues.extend(real_issues)
             pbar.update(len(real_issues))

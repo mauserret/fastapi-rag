@@ -44,7 +44,7 @@ def copy_tree(source: Path, dest: Path, glob_pattern: str) -> int:
     if not source.exists():
         raise FileNotFoundError(
             f"Expected {source}, but it wasn't there. "
-            "The repo structure may have changed — check manually."
+            "The repo structure may have changed."
         )
     if dest.exists():
         shutil.rmtree(dest)  # raw/ is write-once per run: clean slate each time
