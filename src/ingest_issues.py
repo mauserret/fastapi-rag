@@ -2,18 +2,13 @@
 Ingest FastAPI's GitHub issues into data/raw/issues/.
 
 Each issue is saved as its own JSON file: data/raw/issues/{issue_number}.json,
-containing the issue itself plus all its comments (the back-and-forth is often
-where the actually useful troubleshooting info lives).
+containing the issue itself plus all its comments.
 
-GitHub's API treats pull requests as a kind of issue, so we filter those out —
-we only want real Q&A/bug-report issues for this corpus.
+GitHub's API treats pull requests as a kind of issue, so this filters those out
+as I only want real Q&A/bug-report issues for this corpus.
 
-Run it with:
-    python src/ingest_issues.py --max-issues 500
-
-(Start small while testing — pulling *all* issues on a popular repo can be
-tens of thousands and take a while. Raise --max-issues once you trust the
-script.)
+To run:
+    python src/ingest_issues.py --max-issues 500 (default set to 100)
 """
 
 import argparse
